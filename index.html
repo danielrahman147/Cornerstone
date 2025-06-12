@@ -375,6 +375,69 @@
             }
         }
 
+        @media (max-width: 480px) {
+            body {
+                padding: 0 4vw;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .portfolio h2 {
+                font-size: 1.2rem;
+            }
+            .carousel-container {
+                padding: 10px 0;
+            }
+            .carousel-item {
+                min-width: 90vw;
+            }
+            .logo-container {
+                height: 60px;
+                padding: 8px;
+            }
+            .logo-container img {
+                width: 90px !important;
+            }
+            .about-content p,
+            .manifesto-text,
+            .manifesto-text.secondary {
+                font-size: 1rem;
+                padding: 0 5px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            body {
+                padding: 0 2vw;
+            }
+            .carousel-track {
+                gap: 10px;
+            }
+            .carousel-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .carousel-track {
+                width: max-content;
+                min-width: 100vw;
+            }
+            .carousel-item {
+                min-width: 80vw;
+            }
+            .logo-container img {
+                max-width: 120px !important;
+            }
+        }
+        
+        @media (pointer: coarse) {
+            .cursor {
+                display: none !important;
+            }
+        }
+
         /* Add smooth scrolling */
         html {
             scroll-behavior: smooth;
