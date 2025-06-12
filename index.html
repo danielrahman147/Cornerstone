@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cornerstone Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-primary: 'Syne', sans-serif;
+            --font-secondary: 'Space Grotesk', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-secondary);
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            perspective: 1000px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, #000000, #1a1a1a);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .hero h1 {
+            font-family: var(--font-primary);
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(45deg, #ffffff, #cccccc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(255,255,255,0.1);
+            animation: glow 3s ease-in-out infinite alternate;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255,255,255,0.1),
+                            0 0 20px rgba(255,255,255,0.1),
+                            0 0 30px rgba(255,255,255,0.1);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255,255,255,0.2),
+                            0 0 30px rgba(255,255,255,0.2),
+                            0 0 40px rgba(255,255,255,0.2);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            color: #86868b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #000000, #0a0a0a);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
+
+        .portfolio h2 {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .portfolio h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            padding: 40px 0;
+            width: 100%;
+        }
+
+        .carousel-track {
+            display: flex;
+            animation: slide 60s linear infinite;
+            gap: 40px;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .carousel-container::before,
+        .carousel-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 150px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .carousel-container::before {
+            left: 0;
+            background: linear-gradient(90deg, #000000 0%, transparent 100%);
+        }
+
+        .carousel-container::after {
+            right: 0;
+            background: linear-gradient(-90deg, #000000 0%, transparent 100%);
+        }
+
+        .carousel-item {
+            min-width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            width: 100%;
+            height: 100px;
+            padding: 20px;
+        }
+
+        .logo-container img {
+            width: 180px;
+            height: auto;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container:hover img {
+            opacity: 1;
+            transform: scale(1.05);
+            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,0.3));
+        }
+
+        /* Fallback for missing images */
+        .logo-container img[src=""] {
+            display: none;
+        }
+
+        .logo-container img:not([src]), 
+        .logo-container img[src=""] {
+            content: attr(alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .logo-container::after {
+            content: attr(data-company);
+            position: absolute;
+            color: #ffffff;
+            font-size: 1.2rem;
+            display: none;
+            opacity: 0.8;
+            font-family: var(--font-primary);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .logo-container:empty::after {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #0a0a0a, #000000);
+            position: relative;
+        }
+
+        .manifesto {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #000000, #0a0a0a);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .manifesto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
+
+        .manifesto-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .manifesto-text {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            line-height: 1.4;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .manifesto-text strong {
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #cccccc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .manifesto-text.secondary {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            margin-top: 2rem;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .about-content p {
+            font-family: var(--font-secondary);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .about-content p::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        }
+
+        @media (max-width: 767px) {
+            .hero h1 {
+                font-size: 2.8rem;
+                letter-spacing: -0.02em;
+            }
+            .portfolio h2 {
+                font-size: 2rem;
+            }
+            .carousel-container {
+                padding: 30px 0;
+            }
+            .carousel-track {
+                gap: 20px;
+            }
+            .carousel-item {
+                min-width: 100%;
+            }
+            .logo-container {
+                height: 80px;
+                padding: 15px;
+            }
+            .logo-container img {
+                width: 140px;
+            }
+            .about-content p {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+            .manifesto {
+                padding: 80px 0;
+            }
+            .manifesto-text {
+                font-size: 1.8rem;
+                padding: 0 20px;
+            }
+            .manifesto-text.secondary {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Add smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Add cursor effect */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .cursor {
+                display: block;
+            }
+        }
+    </style>
+    <script>
+        // Add cursor effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const cursor = document.createElement('div');
+            cursor.className = 'cursor';
+            document.body.appendChild(cursor);
+
+            document.addEventListener('mousemove', function(e) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            document.addEventListener('mousedown', function() {
+                cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            });
+
+            document.addEventListener('mouseup', function() {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+
+            // Add parallax effect
+            document.addEventListener('mousemove', function(e) {
+                const hero = document.querySelector('.hero-content');
+                const x = (window.innerWidth - e.pageX * 2) / 100;
+                const y = (window.innerHeight - e.pageY * 2) / 100;
+                hero.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        });
+    </script>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Cornerstone Capital</h1>
+            <p class="subtitle">Shaping the future through technology investments</p>
+        </div>
+    </section>
+
+    <section class="portfolio">
+        <h2>Our Portfolio</h2>
+        <div class="carousel">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <div class="logo-container" data-company="Babando">
+                            <img src="images/babando.png" alt="Babando" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="logo-container" data-company="Integrify">
+                            <img src="images/integrify.png" alt="Integrify" style="width:162px;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="logo-container" data-company="Measurlabs">
+                            <img src="images/measurlabs.png" alt="Measurlabs" style="width:216px;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="logo-container" data-company="Verge">
+                            <img src="images/verge.png" alt="Verge" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
+                        </div>
+                    </div>
+                    <!-- Duplicate items for continuous sliding -->
+                    <div class="carousel-item">
+                        <div class="logo-container" data-company="Babando">
+                            <img src="images/babando.png" alt="Babando" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="logo-container" data-company="Integrify">
+                            <img src="images/integrify.png" alt="Integrify" style="width:162px;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="logo-container" data-company="Measurlabs">
+                            <img src="images/measurlabs.png" alt="Measurlabs" style="width:216px;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="logo-container" data-company="Verge">
+                            <img src="images/verge.png" alt="Verge" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="manifesto">
+        <div class="manifesto-content">
+            <p class="manifesto-text">
+                At Cornerstone Capital, we don't just fund companies —<br>
+                we <strong>ignite revolutions</strong>, <strong>scale bold ideas</strong>, and <strong>challenge the status quo</strong>.
+            </p>
+            <p class="manifesto-text secondary">
+                We are not here for incremental change.<br>
+                We back the outliers, the obsessives, the builders who won't rest until their vision is real.
+            </p>
+        </div>
+    </section>
+</body>
+</html> 
