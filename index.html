@@ -136,95 +136,124 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
         }
 
-        .carousel-container {
-            display: flex;
+        /* --- Carousel Redesign --- */
+        .carousel {
+            width: 100vw;
             overflow: hidden;
             position: relative;
-            padding: 40px 0;
-            width: 100%;
+            background: none;
+            margin: 0 -4vw;
+        }
+        .carousel::before,
+        .carousel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 2;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .carousel::before {
+            left: 0;
+            background: linear-gradient(90deg, #000 40%, transparent 100%);
+        }
+        .carousel::after {
+            right: 0;
+            background: linear-gradient(-90deg, #000 40%, transparent 100%);
         }
         .carousel-track {
             display: flex;
-            animation: slide 60s linear infinite;
-            gap: 40px;
+            align-items: center;
+            gap: 48px;
+            animation: slide 30s linear infinite;
+            will-change: transform;
+            min-height: 220px;
+            padding: 20px 0;
+        }
+        .carousel-track:hover {
+            animation-play-state: paused;
         }
         @keyframes slide {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
-
         .carousel-item {
             display: flex;
             align-items: center;
             justify-content: center;
             min-width: 300px;
-            height: 120px;
+            height: 180px;
             flex-shrink: 0;
+            transition: transform 0.3s ease;
         }
-
         .logo-container {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
             height: 100%;
-            padding: 0;
+            background: none;
+            padding: 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
         }
-
+        .logo-container:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
         .logo-container img {
             display: block;
             margin: 0 auto;
-            max-height: 90px;
-            width: auto !important;
-            max-width: 180px;
+            width: 180px;
+            height: 80px;
             object-fit: contain;
-            filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255,255,255,0.2));
+            filter: brightness(0) invert(1);
             opacity: 0.85;
-            transition: filter 0.3s, opacity 0.3s;
+            transition: all 0.3s ease;
+            border-radius: 12px;
         }
-
         .logo-container:hover img {
+            transform: scale(1.05);
             opacity: 1;
-            filter: brightness(1.2) invert(1) drop-shadow(0 0 12px rgba(255,255,255,0.4));
+            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
         }
-
-        /* Fallback for missing images */
-        .logo-container img[src=""] {
-            display: none;
+        .logo-container[data-company="Measurlabs"] img {
+            width: 324px;
+            height: 144px;
         }
-
-        .logo-container img:not([src]), 
-        .logo-container img[src=""] {
-            content: attr(alt);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #ffffff;
-            text-align: center;
-            padding: 1rem;
+        .logo-container[data-company="Verge"] img {
+            width: 420px;
+            height: 185px;
         }
-
-        .logo-container::after {
-            content: attr(data-company);
-            position: absolute;
-            color: #ffffff;
-            font-size: 1.2rem;
-            display: none;
-            opacity: 0.8;
-            font-family: var(--font-primary);
-            font-weight: 600;
-            letter-spacing: 0.02em;
+        .logo-container[data-company="Playmerce"] img {
+            width: 290px;
+            height: 130px;
         }
-
-        .logo-container:empty::after {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        @media (max-width: 1024px) {
+            .carousel-track { 
+                min-height: 140px;
+                gap: 32px;
+            }
+            .carousel-item { height: 110px; }
+            .logo-container img { width: 130px; height: 55px; }
+            .logo-container[data-company="Measurlabs"] img { width: 234px; height: 99px; }
+            .logo-container[data-company="Verge"] img { width: 300px; height: 130px; }
+            .logo-container[data-company="Playmerce"] img { width: 210px; height: 90px; }
+            .carousel::before, .carousel::after { width: 60px; }
+        }
+        @media (max-width: 480px) {
+            .carousel-track { 
+                min-height: 80px;
+                gap: 24px;
+            }
+            .carousel-item { height: 60px; }
+            .logo-container img { width: 90px; height: 38px; }
+            .logo-container[data-company="Measurlabs"] img { width: 162px; height: 68px; }
+            .logo-container[data-company="Verge"] img { width: 210px; height: 90px; }
+            .logo-container[data-company="Playmerce"] img { width: 145px; height: 60px; }
+            .carousel::before, .carousel::after { width: 30px; }
         }
 
         .about {
@@ -321,19 +350,6 @@
             .portfolio h2 {
                 font-size: 2rem;
             }
-            .carousel-container {
-                padding: 30px 0;
-            }
-            .carousel-track {
-                gap: 20px;
-            }
-            .carousel-item {
-                height: 90px;
-            }
-            .logo-container img {
-                max-height: 60px;
-                max-width: 120px;
-            }
             .about-content p {
                 font-size: 1.1rem;
                 padding: 0 20px;
@@ -362,16 +378,6 @@
             }
             .portfolio h2 {
                 font-size: 1.2rem;
-            }
-            .carousel-container {
-                padding: 10px 0;
-            }
-            .carousel-item {
-                height: 70px;
-            }
-            .logo-container img {
-                max-height: 40px;
-                max-width: 90px;
             }
             .about-content p,
             .manifesto-text,
@@ -475,49 +481,57 @@
 
     <section class="portfolio">
         <h2>Our Portfolio</h2>
-        <div class="carousel">
-            <div class="carousel-container" tabindex="0" aria-label="Portfolio carousel">
-                <div class="carousel-track">
-                    <div class="carousel-item">
-                        <div class="logo-container" data-company="Babando">
-                            <img src="images/babando.png" alt="Babando" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
-                        </div>
+        <div class="carousel" aria-label="Our Portfolio Logos">
+            <div class="carousel-track">
+                <div class="carousel-item">
+                    <div class="logo-container" data-company="Babando">
+                        <img src="/images/babando.png" alt="Babando logo">
                     </div>
-                    <div class="carousel-item">
-                        <div class="logo-container" data-company="Integrify">
-                            <img src="images/integrify.png" alt="Integrify" style="width:162px;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
-                        </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="logo-container" data-company="Integrify">
+                        <img src="/images/integrify.png" alt="Integrify logo">
                     </div>
-                    <div class="carousel-item">
-                        <div class="logo-container" data-company="Measurlabs">
-                            <img src="images/measurlabs.png" alt="Measurlabs" style="width:216px;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
-                        </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="logo-container" data-company="Measurlabs">
+                        <img src="/images/measurlabs.png" alt="Measurlabs logo">
                     </div>
-                    <div class="carousel-item">
-                        <div class="logo-container" data-company="Verge">
-                            <img src="images/verge.png" alt="Verge" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
-                        </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="logo-container" data-company="Verge">
+                        <img src="/images/verge.png" alt="Verge logo">
                     </div>
-                    <!-- Duplicate items for continuous sliding -->
-                    <div class="carousel-item">
-                        <div class="logo-container" data-company="Babando">
-                            <img src="images/babando.png" alt="Babando" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
-                        </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="logo-container" data-company="Playmerce">
+                        <img src="/images/playmerce.png" alt="Playmerce logo">
                     </div>
-                    <div class="carousel-item">
-                        <div class="logo-container" data-company="Integrify">
-                            <img src="images/integrify.png" alt="Integrify" style="width:162px;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
-                        </div>
+                </div>
+                <!-- Duplicate for infinite effect -->
+                <div class="carousel-item">
+                    <div class="logo-container" data-company="Babando">
+                        <img src="/images/babando.png" alt="Babando logo">
                     </div>
-                    <div class="carousel-item">
-                        <div class="logo-container" data-company="Measurlabs">
-                            <img src="images/measurlabs.png" alt="Measurlabs" style="width:216px;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
-                        </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="logo-container" data-company="Integrify">
+                        <img src="/images/integrify.png" alt="Integrify logo">
                     </div>
-                    <div class="carousel-item">
-                        <div class="logo-container" data-company="Verge">
-                            <img src="images/verge.png" alt="Verge" onerror="this.onerror=null; this.style.display='none'; this.parentElement.style.background='#1d1d1f';">
-                        </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="logo-container" data-company="Measurlabs">
+                        <img src="/images/measurlabs.png" alt="Measurlabs logo">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="logo-container" data-company="Verge">
+                        <img src="/images/verge.png" alt="Verge logo">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="logo-container" data-company="Playmerce">
+                        <img src="/images/playmerce.png" alt="Playmerce logo">
                     </div>
                 </div>
             </div>
