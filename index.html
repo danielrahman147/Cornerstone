@@ -9,8 +9,30 @@
   <link rel="alternate icon" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&family=Rakkas&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Joyride';
+      src: url('fonts/Joyride-Regular.woff2') format('woff2'),
+           url('fonts/Joyride-Regular.woff') format('woff'),
+           url('fonts/Joyride-Regular.ttf') format('truetype'),
+           url('fonts/Joyride-Regular.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Joyride';
+      src: url('fonts/Joyride-Bold.woff2') format('woff2'),
+           url('fonts/Joyride-Bold.woff') format('woff'),
+           url('fonts/Joyride-Bold.ttf') format('truetype'),
+           url('fonts/Joyride-Bold.otf') format('opentype');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --font-primary: 'Syne', sans-serif;
       --font-secondary: 'Space Grotesk', sans-serif;
@@ -122,9 +144,9 @@
     }
 
     .brand {
-      font-family: var(--font-primary);
+      font-family: 'Rakkas', var(--font-primary), sans-serif;
       font-size: clamp(3.5rem, 11vw, 7.5rem);
-      font-weight: 800;
+      font-weight: 400;
       letter-spacing: -0.03em;
       background: linear-gradient(135deg, #ffffff 0%, var(--color-gold-light) 50%, #ffffff 100%);
       -webkit-background-clip: text;
@@ -135,7 +157,6 @@
       text-align: center;
       line-height: 1.1;
       position: relative;
-      font-weight: 700;
     }
 
     .brand::after {
