@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5c842;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fce68a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Clean modern "C" -->
+  <path d="M 30 50
+           A 20 20 0 1 1 50 30
+           L 70 30
+           A 5 5 0 0 1 70 35
+           L 55 35
+           A 15 15 0 0 0 35 50
+           A 15 15 0 0 0 55 65
+           L 70 65
+           A 5 5 0 0 1 70 70
+           L 50 70
+           A 20 20 0 1 1 30 50
+           Z" 
+        fill="url(#goldGradient)"/>
+</svg>
