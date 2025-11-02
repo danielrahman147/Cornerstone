@@ -3,247 +3,795 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cornerstone Capital Oy - Shaping the future through technology investments">
   <title>Cornerstone Capital Oy</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --font-primary: 'Syne', sans-serif;
       --font-secondary: 'Space Grotesk', sans-serif;
-      --color-bg: linear-gradient(135deg, #18181a 0%, #232526 100%);
-      --color-fg: #fff;
-      --color-accent: #e5e5e7;
-      --color-muted: #b0b0b8;
-      --color-highlight: #6366f1;
+      --color-bg: #0a0a0a;
+      --color-bg-alt: #0f0f0f;
+      --color-fg: #ffffff;
+      --color-accent: #f5f5f5;
+      --color-muted: #999;
+      --color-gold: #f5c842;
+      --color-gold-light: #fce68a;
+      --color-accent-blue: #4a90e2;
+      --color-accent-purple: #7b68ee;
+      --color-highlight: #f5c842;
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 4rem;
+      --spacing-xl: 8rem;
+      --border-radius: 1.5rem;
+      --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    html, body {
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
       margin: 0;
       padding: 0;
       background: var(--color-bg);
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(245, 200, 66, 0.03) 0%, transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(74, 144, 226, 0.02) 0%, transparent 60%);
+      background-attachment: fixed;
       color: var(--color-fg);
       font-family: var(--font-secondary);
+      font-size: 17px;
+      line-height: 1.7;
       min-height: 100vh;
-      scroll-behavior: smooth;
-    }
-    body {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      letter-spacing: 0.01em;
     }
+
+    /* Subtle grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(245, 200, 66, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245, 200, 66, 0.015) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    body::after {
+      display: none;
+    }
+
     .site-container {
-      max-width: 1100px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 2rem;
+      width: 100%;
+      position: relative;
+      z-index: 1;
     }
+
+    /* Header Styles */
     header {
-      padding: 120px 0 0 0;
+      padding: 12rem 0 8rem 0;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(245, 200, 66, 0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(80px);
+    }
+
     .brand {
       font-family: var(--font-primary);
-      font-size: 5rem;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      background: linear-gradient(90deg, #fff 60%, var(--color-highlight) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      text-shadow: 0 4px 32px rgba(99,102,241,0.08);
-    }
-    .header-tagline {
-      font-size: 2rem;
-      font-weight: 500;
-      color: var(--color-muted);
-      margin-top: 0.5rem;
-      text-align: center;
-      letter-spacing: 0.01em;
-      background: rgba(255,255,255,0.04);
-      border-radius: 1rem;
-      padding: 0.75rem 1.5rem;
-      box-shadow: 0 2px 16px 0 rgba(99,102,241,0.04);
-      display: inline-block;
-    }
-    .tagline {
-      font-size: 1.3rem;
-      color: var(--color-muted);
-      font-weight: 400;
-      margin-bottom: 2.5rem;
-      letter-spacing: 0.01em;
-    }
-    .manifesto {
-      max-width: 800px;
-      margin: 4rem auto 0 auto;
-      text-align: center;
-      font-family: var(--font-primary);
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1.4;
-      color: var(--color-fg);
-      letter-spacing: -0.01em;
-      padding: 2.5rem 0 2.5rem 0;
-      background: rgba(255,255,255,0.06);
-      border-radius: 1.5rem;
-      box-shadow: 0 4px 32px 0 rgba(99,102,241,0.10);
-    }
-    .manifesto strong {
-      background: linear-gradient(90deg, #fff 60%, var(--color-highlight) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
+      font-size: clamp(3.5rem, 11vw, 7.5rem);
       font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 0%, var(--color-gold-light) 50%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      line-height: 1.1;
+      position: relative;
+      font-weight: 700;
     }
+
+    .brand::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+      border-radius: 1px;
+      opacity: 0.6;
+    }
+
+    .header-tagline {
+      font-family: var(--font-primary);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 600;
+      line-height: 1.7;
+      color: var(--color-fg);
+      text-align: center;
+      margin-top: 3rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* Portfolio Section */
     .portfolio-section {
       width: 100%;
-      background: linear-gradient(180deg, #18181a 80%, #232526 100%);
-      padding: 96px 0 120px 0;
+      background: rgba(15, 15, 15, 0.3);
+      backdrop-filter: blur(30px);
+      padding: 8rem 0 10rem 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 18rem;
-      border-radius: 2rem;
-      box-shadow: 0 8px 40px 0 rgba(0,0,0,0.10);
+      margin-top: 10rem;
+      border-radius: var(--border-radius);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(245, 200, 66, 0.1);
     }
+
+    .portfolio-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+      opacity: 0.3;
+    }
+
     .portfolio-title {
       font-family: var(--font-primary);
-      font-size: 2.6rem;
-      font-weight: 800;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 2.5rem;
+      margin-bottom: 5rem;
       text-transform: uppercase;
       color: var(--color-fg);
-      text-shadow: 0 2px 16px rgba(99,102,241,0.08);
-    }
-    .carousel {
-      width: 100vw;
-      overflow: hidden;
+      text-align: center;
       position: relative;
-      background: none;
-      margin: 0 -4vw;
-      padding-bottom: 40px;
+      background: linear-gradient(135deg, #ffffff 0%, var(--color-gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .carousel-track {
-      display: flex;
-      align-items: center;
-      gap: 96px;
-      animation: slide 32s linear infinite;
-      will-change: transform;
-      min-height: 180px;
-      padding: 40px 0;
+
+    /* Logo Grid Styles */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 2rem;
+      position: relative;
     }
-    .carousel:hover .carousel-track {
-      animation-play-state: paused;
-    }
-    @keyframes slide {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+
     .logo-card {
-      background: rgba(255,255,255,0.04);
-      border-radius: 18px;
-      padding: 0 56px;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 220px;
-      min-height: 120px;
-      box-shadow: 0 2px 16px 0 rgba(99,102,241,0.04);
-      transition: transform 0.2s cubic-bezier(.4,2,.6,1), box-shadow 0.2s;
+      min-height: 180px;
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+      transition: all var(--transition);
+      border: 1px solid rgba(245, 200, 66, 0.1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
     }
+
+    .logo-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        rgba(245, 200, 66, 0.05) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      border-radius: 16px;
+    }
+
+    .logo-card:hover::after {
+      opacity: 1;
+    }
+
+    .logo-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      border-radius: 16px;
+      opacity: 0;
+      z-index: -1;
+      filter: blur(20px);
+      transition: opacity var(--transition);
+    }
+
     .logo-card:hover {
-      transform: translateY(-8px) scale(1.04);
-      background: rgba(99,102,241,0.08);
-      box-shadow: 0 8px 32px 0 rgba(99,102,241,0.10);
+      transform: translateY(-8px);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(245, 200, 66, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      border-color: rgba(245, 200, 66, 0.25);
     }
+
+    .logo-card:hover::before {
+      opacity: 0.3;
+    }
+
+    .logo-card:focus {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 4px;
+    }
+
     .logo-card img {
-      width: 180px;
-      height: 70px;
+      width: 200px;
+      height: 80px;
       object-fit: contain;
       display: block;
-      filter: brightness(0) invert(1) grayscale(0.1);
-      opacity: 0.92;
-      border-radius: 10px;
-      margin: 0;
+      filter: brightness(0) invert(1) grayscale(0.2);
+      opacity: 0.85;
+      transition: all var(--transition);
+      position: relative;
+      z-index: 1;
     }
+
+    .logo-card:hover img {
+      opacity: 1;
+      filter: brightness(0) invert(1) grayscale(0);
+      transform: scale(1.05);
+    }
+
+    /* Verge logo - 3x bigger (image only, card stays same size) */
+    .logo-card:has(img[src*="verge"]) {
+      min-height: 180px !important;
+      max-height: 180px !important;
+      padding: 3rem 2.5rem !important;
+      overflow: hidden !important;
+      width: auto !important;
+    }
+
+    .logo-card img[src*="verge"] {
+      width: 600px !important;
+      height: 240px !important;
+    }
+
+    /* Aurafleet logo - 3x bigger (image only, card stays same size) */
+    .logo-card:has(img[src*="aurafleet"]) {
+      min-height: 180px !important;
+      max-height: 180px !important;
+      padding: 3rem 2.5rem !important;
+      overflow: hidden !important;
+      width: auto !important;
+    }
+
+    .logo-card img[src*="aurafleet"] {
+      width: 600px !important;
+      height: 240px !important;
+    }
+
+    /* Founders Section */
+    .founders-section {
+      max-width: 1200px;
+      margin: 8rem auto;
+      padding: 0 2rem;
+      position: relative;
+    }
+
+    .founders-title {
+      font-family: var(--font-primary);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 4rem;
+      text-transform: uppercase;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff 0%, var(--color-gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .founder-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(30px);
+      border-radius: var(--border-radius);
+      padding: 5rem;
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(245, 200, 66, 0.15);
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+
+    .founder-card::before {
+      display: none;
+    }
+
+    .founder-image {
+      flex-shrink: 0;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid rgba(245, 200, 66, 0.2);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .founder-image::before {
+      display: none;
+    }
+
+    .founder-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(30%) brightness(1.05);
+      transition: all var(--transition);
+    }
+
+    .founder-content {
+      flex: 1;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      line-height: 1.8;
+      color: var(--color-accent);
+    }
+
+    .founder-name {
+      font-family: var(--font-primary);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 0%, var(--color-gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .founder-role {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: var(--color-muted);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 500;
+    }
+
+    .founder-description {
+      font-family: var(--font-secondary);
+      color: var(--color-accent);
+    }
+
+    .founder-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+      border-color: rgba(245, 200, 66, 0.25);
+    }
+
+    .founder-card:hover .founder-image img {
+      filter: grayscale(10%) brightness(1.1);
+      transform: scale(1.02);
+    }
+
+    /* Manifesto Section */
+    .manifesto {
+      max-width: 1200px;
+      margin: 8rem auto 10rem auto;
+      padding: 5rem 4rem;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(30px);
+      border-radius: var(--border-radius);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(245, 200, 66, 0.15);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      transition: all var(--transition);
+    }
+
+    .manifesto-content {
+      flex: 1;
+      text-align: center;
+      font-family: var(--font-primary);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 600;
+      line-height: 1.7;
+      color: var(--color-fg);
+      letter-spacing: -0.01em;
+    }
+
+    .manifesto-image {
+      flex-shrink: 0;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid rgba(245, 200, 66, 0.2);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .manifesto-image::before {
+      display: none;
+    }
+
+    .manifesto-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(30%) brightness(1.05);
+      transition: all var(--transition);
+    }
+
+    .manifesto:hover {
+      transform: translateY(-4px);
+      box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+      border-color: rgba(245, 200, 66, 0.25);
+    }
+
+    .manifesto:hover .manifesto-image img {
+      filter: grayscale(10%) brightness(1.1);
+      transform: scale(1.02);
+    }
+
+    .manifesto::before {
+      display: none;
+    }
+
+    .manifesto::after {
+      display: none;
+    }
+
+    .manifesto strong {
+      background: linear-gradient(135deg, #ffffff 0%, var(--color-gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    /* Responsive Design */
     @media (max-width: 900px) {
-      .carousel-track { gap: 48px; min-height: 120px; }
-      .portfolio-section { padding: 48px 0 60px 0; }
+      .site-container {
+        padding: 0 1.5rem;
+      }
+
+      header {
+        padding: 8rem 0 4rem 0;
+      }
+
+      .portfolio-section {
+        margin-top: 4rem;
+        padding: 4rem 0 6rem 0;
+      }
+
+      .logo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2rem;
+        padding: 0 1rem;
+      }
+
+      .logo-card {
+        padding: 2.5rem 2rem;
+        min-height: 160px;
+      }
+
+      .logo-card img {
+        width: 180px;
+        height: 70px;
+      }
+
+      .logo-card img[src*="verge"] {
+        width: 540px !important;
+        height: 216px !important;
+      }
+
+      .logo-card img[src*="aurafleet"] {
+        width: 540px !important;
+        height: 216px !important;
+      }
+
+      .manifesto {
+        flex-direction: column;
+        padding: 3rem 2rem;
+        margin: 4rem auto 6rem auto;
+        gap: 2rem;
+      }
+
+      .manifesto-image {
+        width: 250px;
+        height: 250px;
+      }
+
+      .founders-section {
+        margin: 6rem auto;
+      }
+
+      .founder-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+        padding: 3rem;
+      }
+
+      .founder-image {
+        width: 250px;
+        height: 250px;
+      }
     }
+
     @media (max-width: 600px) {
-      .brand { font-size: 2.1rem; }
-      .manifesto { font-size: 1.1rem; padding: 1rem 0; }
-      .portfolio-title { font-size: 1.1rem; }
-      .portfolio-section { padding: 32px 0 40px 0; margin-top: 2rem; }
-      .carousel-track { gap: 24px; min-height: 80px; padding: 16px 0; }
-      .logo-card { padding: 0 16px; min-width: 120px; min-height: 60px; }
+      .site-container {
+        padding: 0 1rem;
+      }
+
+      header {
+        padding: 6rem 0 3rem 0;
+      }
+
+      .portfolio-section {
+        margin-top: 3rem;
+        padding: 3rem 0 5rem 0;
+        border-radius: 1.5rem;
+      }
+
+      .portfolio-title {
+        margin-bottom: 3rem;
+      }
+
+      .logo-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0;
+      }
+
+      .logo-card {
+        padding: 2rem 1.5rem;
+        min-height: 140px;
+      }
+
+      .logo-card img {
+        width: 160px;
+        height: 60px;
+      }
+
+      .logo-card img[src*="verge"] {
+        width: 480px !important;
+        height: 192px !important;
+      }
+
+      .logo-card img[src*="aurafleet"] {
+        width: 480px !important;
+        height: 192px !important;
+      }
+
+      .manifesto {
+        padding: 2.5rem 1.5rem;
+        margin: 3rem auto 5rem auto;
+        gap: 1.5rem;
+      }
+
+      .manifesto-image {
+        width: 200px;
+        height: 200px;
+      }
+
+      .founders-section {
+        margin: 4rem auto;
+        padding: 0 1rem;
+      }
+
+      .founder-card {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .founder-image {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      body::before,
+      body::after {
+        animation: none;
+      }
     }
   </style>
 </head>
-<body style="margin:0;padding:0;">
-  <div class="site-container" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
-    <header>
-      <div class="brand">Cornerstone Capital</div>
-      <div class="header-tagline" style="font-size:2rem;font-weight:500;color:var(--color-muted);margin-top:0.5rem;text-align:center;">Shaping the future through technology investments</div>
+<body>
+  <div class="site-container">
+    <header role="banner">
+      <h1 class="brand">Cornerstone Capital</h1>
+      <p class="header-tagline">Shaping the future through technology investments</p>
     </header>
-    <main>
-      <section class="portfolio-section">
-        <div class="portfolio-title">Portfolio</div>
-        <div class="carousel" aria-label="Portfolio Logos">
-          <div class="carousel-track">
-            <div class="logo-card">
-              <img src="images/babando.png" alt="Babando logo">
-            </div>
-            <div class="logo-card">
-              <img src="images/measurlabs.png" alt="Measur logo">
-            </div>
-            <div class="logo-card">
-              <img src="images/integrify.png" alt="Integrify logo">
-            </div>
-            <div class="logo-card">
-              <img src="images/verge.png" alt="Verge logo">
-            </div>
-            <div class="logo-card">
-              <img src="images/playmerce.png" alt="Playmerce logo">
-            </div>
-            <div class="logo-card">
-              <img src="https://placehold.co/180x70/222/fff?text=Komu+Homes" alt="Komu Homes logo">
-            </div>
-            <!-- Duplicate logos for infinite effect -->
-            <div class="logo-card">
-              <img src="images/babando.png" alt="Babando logo">
-            </div>
-            <div class="logo-card">
-              <img src="images/measurlabs.png" alt="Measur logo">
-            </div>
-            <div class="logo-card">
-              <img src="images/integrify.png" alt="Integrify logo">
-            </div>
-            <div class="logo-card">
-              <img src="images/verge.png" alt="Verge logo">
-            </div>
-            <div class="logo-card">
-              <img src="images/playmerce.png" alt="Playmerce logo">
-            </div>
-            <div class="logo-card">
-              <img src="https://placehold.co/180x70/222/fff?text=Komu+Homes" alt="Komu Homes logo">
-            </div>
+
+    <main role="main">
+      <section class="portfolio-section" aria-labelledby="portfolio-title">
+        <h2 class="portfolio-title" id="portfolio-title">Portfolio</h2>
+        <div class="logo-grid" role="list">
+          <div class="logo-card" role="listitem" tabindex="0">
+            <img src="images/babando.png" alt="Babando logo" loading="lazy">
+          </div>
+          <div class="logo-card" role="listitem" tabindex="0">
+            <img src="images/measurlabs.png" alt="Measurlabs logo" loading="lazy">
+          </div>
+          <div class="logo-card" role="listitem" tabindex="0">
+            <img src="images/integrify.png" alt="Integrify logo" loading="lazy">
+          </div>
+          <div class="logo-card" role="listitem" tabindex="0">
+            <img src="images/verge.png" alt="Verge logo" loading="lazy">
+          </div>
+          <div class="logo-card" role="listitem" tabindex="0">
+            <img src="images/playmerce.png" alt="Playmerce logo" loading="lazy">
+          </div>
+          <div class="logo-card" role="listitem" tabindex="0">
+            <img src="images/Komu Homes logo color.png" alt="Komu Homes logo" loading="lazy">
+          </div>
+          <div class="logo-card" role="listitem" tabindex="0">
+            <img src="images/Munchi logo white 2025 (1).png" alt="Munchi logo" loading="lazy">
+          </div>
+          <div class="logo-card" role="listitem" tabindex="0">
+            <img src="images/Donut Defence.png" alt="Donut Defence logo" loading="lazy">
+          </div>
+          <div class="logo-card" role="listitem" tabindex="0">
+            <img src="images/aurafleet-logo.png" alt="Aurafleet logo" loading="lazy">
           </div>
         </div>
       </section>
-      <div class="manifesto" style="max-width:800px;margin:4rem auto 0 auto;text-align:center;font-family:var(--font-primary);font-size:2rem;font-weight:700;line-height:1.4;color:var(--color-fg);letter-spacing:-0.01em;padding:2.5rem 0 2.5rem 0;background:rgba(255,255,255,0.03);border-radius:1.5rem;box-shadow:0 4px 32px 0 rgba(0,0,0,0.08);">
-        we don't just fund companies —<br>
-        we <strong>ignite revolutions</strong>, <strong>scale bold ideas</strong>, and <strong>challenge the status quo</strong>.<br><br>
-        We are not here for incremental change.<br>
-        We back the outliers, the obsessives, the builders who won't rest until their vision is real.
-      </div>
+
+      <section class="manifesto" aria-label="Company Manifesto">
+        <div class="manifesto-content">
+          <p>
+            we don't just fund companies —<br>
+            we <strong>ignite revolutions</strong>, <strong>scale bold ideas</strong>, and <strong>challenge the status quo</strong>.<br><br>
+            We are not here for incremental change.<br>
+            We back the outliers, the obsessives, the builders who won't rest until their vision is real.
+          </p>
+        </div>
+        <div class="manifesto-image">
+          <img src="images/viljami_heinonen_other_side-1021x1024.webp" alt="Viljami Heinonen" loading="lazy">
+        </div>
+      </section>
     </main>
   </div>
+
+  <script>
+    // Mouse tracking glow effect for logo cards
+    document.querySelectorAll('.logo-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+      });
+    });
+
+    // Smooth reveal animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe logo cards for reveal animation
+    document.querySelectorAll('.logo-card').forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+      observer.observe(card);
+    });
+
+    // Observe manifesto for reveal animation
+    const manifesto = document.querySelector('.manifesto');
+    if (manifesto) {
+      manifesto.style.opacity = '0';
+      manifesto.style.transform = 'translateY(30px)';
+      manifesto.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      observer.observe(manifesto);
+    }
+
+  </script>
 </body>
-</html> 
+</html>
