@@ -700,75 +700,104 @@
     @media (max-width: 375px) {
       .site-container {
         padding: 0 1rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
       }
 
       header {
         padding: 5rem 0 2.5rem 0;
+        width: 100%;
+        text-align: center;
       }
 
       .brand {
         font-size: clamp(2.5rem, 15vw, 4rem);
         margin-bottom: 2rem;
         letter-spacing: -0.02em;
+        text-align: center;
+        width: 100%;
       }
 
       .header-tagline {
         font-size: clamp(1rem, 4vw, 1.3rem);
         margin-top: 2rem;
-        padding: 1rem 2rem;
+        padding: 1rem 1.5rem;
+        text-align: center;
+        width: auto;
+        max-width: 100%;
+        box-sizing: border-box;
       }
 
       .portfolio-section {
         margin-top: 3rem;
-        padding: 3rem 0 4rem 0;
+        padding: 3rem 0.5rem 4rem 0.5rem;
         border-radius: 1rem;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .portfolio-title {
         font-size: clamp(1.5rem, 8vw, 2rem);
         margin-bottom: 2.5rem;
+        text-align: center;
       }
 
       .logo-grid {
         grid-template-columns: 1fr;
         gap: 1.25rem;
-        padding: 0;
+        padding: 0 0.5rem;
+        width: 100%;
+        max-width: 100%;
       }
 
       .logo-card {
-        padding: 1.75rem 1.25rem;
+        padding: 1.75rem 1rem;
         min-height: 130px;
         border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .logo-card img {
         width: 140px;
         height: 55px;
-      }
-
-      .logo-card img[src*="verge"],
-      .logo-card img[src*="aurafleet"] {
-        width: 400px !important;
-        height: 160px !important;
         max-width: 100%;
         object-fit: contain;
       }
 
+      .logo-card img[src*="verge"],
+      .logo-card img[src*="aurafleet"] {
+        width: 100% !important;
+        max-width: 280px !important;
+        height: auto !important;
+        max-height: 100px !important;
+        object-fit: contain;
+      }
+
       .manifesto {
-        padding: 2rem 1.25rem;
+        padding: 2rem 1rem;
         margin: 3rem auto 4rem auto;
         gap: 1.5rem;
         flex-direction: column;
+        width: calc(100% - 2rem);
+        max-width: 100%;
+        box-sizing: border-box;
       }
 
       .manifesto-content {
         font-size: clamp(1rem, 4vw, 1.3rem);
         line-height: 1.6;
+        text-align: center;
       }
 
       .manifesto-image {
         width: 180px;
         height: 180px;
+        margin: 0 auto;
       }
 
       .founders-section {
@@ -777,13 +806,16 @@
       }
 
       .founder-card {
-        padding: 2rem 1.25rem;
+        padding: 2rem 1rem;
         gap: 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .founder-image {
         width: 180px;
         height: 180px;
+        margin: 0 auto;
       }
 
       .founder-name {
